@@ -1,9 +1,9 @@
 const db = require("../config/database");
 
-const createTask = async (taskInput) => {
+const createTask = async (userInput) => {
     const [result] = await db.query(
         "INSERT INTO tasks (title, description, createdBy) VALUES (?, ?, ?)",
-        [taskInput.title, taskInput.description, taskInput.createdBy]
+        [userInput.title, userInput.description, userInput.createdBy]
     );
 
     return result;
@@ -26,10 +26,10 @@ const getTaskById = async (id) => {
     return result;
 }
 
-const updateTask = async (id, taskInput) => {
+const updateTask = async (id, userInput) => {
     const [result] = await db.query(
         "UPDATE tasks SET title = ?, description = ? WHERE id = ?",
-        [taskInput.title, taskInput.description, id]
+        [userInput.title, userInput.description, id]
     );
 
     return result;

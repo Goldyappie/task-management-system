@@ -18,6 +18,7 @@ const createTask = async (req, res) => {
                 errors: errors.array()
             });
         }
+
         const result = await createTaskService(userInput);
         res.status(201).json({
             success: true,

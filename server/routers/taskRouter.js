@@ -6,14 +6,16 @@ const {
     deleteTask
 } = require("../controllers/taskController");
 
+const authMiddleware = require("../middleware/authMiddleware");
+
 const { taskValidator } = require("../validators/taskValidator");
 
 const taskRouter = require("express").Router()
 
-taskRouter.post("/", taskValidator, createTask);
-taskRouter.get("/", getTasks);
-taskRouter.get("/:id", getTaskById);
-taskRouter.put("/:id", taskValidator, updateTask);
-taskRouter.delete("/:id", deleteTask);
+taskRouter.post("/", authMiddleware, taskValidator, createTask);
+taskRouter.get("/", authMiddleware, getTasks);
+taskRouter.get("/:id", authMiddleware, getTaskById);
+taskRouter.put("/:id", authMiddleware, taskValidator, updateTask);
+taskRouter.delete("/:id", authMiddleware, deleteTask);
 
 module.exports = taskRouter;
