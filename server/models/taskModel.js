@@ -40,6 +40,8 @@ const deleteTask = async (id) => {
         "DELETE FROM tasks WHERE id = ?",
         [id]
     );
+
+    return result;
 };
 
 module.exports = {

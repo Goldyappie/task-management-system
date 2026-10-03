@@ -6,6 +6,35 @@ const createTaskService = async (userInput) => {
     return task;
 };
 
+
+const updateTaskService = async (id, userInput) => {
+    const task = await updateTask(id, userInput);
+
+    return task;
+}
+
+const getTasksService = async () => {
+    const task = await getTasks();
+
+    return task;
+}
+
+const getTaskByIdService = async (id) => {
+    const task = await getTaskById(id);
+
+    return task;
+}
+
+const deleteTaskService = async (id) => {
+    const task = await deleteTask(id);
+
+    return task;
+}
+
 module.exports = {
-    createTaskService
+    createTaskService,
+    updateTaskService,
+    deleteTaskService,
+    getTaskByIdService,
+    getTasksService
 }
