@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator");
 const {
     createTaskService,
     getTasksService,
@@ -9,6 +10,14 @@ const {
 const createTask = async (req, res) => {
     try {
         const userInput = req.body;
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                success: false,
+                errors: errors.array()
+            });
+        }
         const result = await createTaskService(userInput);
         res.status(201).json({
             success: true,
@@ -62,6 +71,14 @@ const updateTask = async (req, res) => {
     try {
         const id = req.params.id;
         const userInput = req.body
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                success: false,
+                errors: errors.array()
+            });
+        }
         const result = await updateTaskService(id, userInput);
         res.status(200).json({
             success: true,
